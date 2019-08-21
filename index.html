@@ -7,13 +7,80 @@
 </head>
 
 <body>
+<script>
+// Name that vine
+var WinsTotal = 0;
+var LossesTotal = 0;
+
+// variable for the amount of guesses
+var guessAmount = 8;
+
+// variable for the amount of blank spaces and good/bad guesses
+var numberOfBlanks = 0;
+var correctGuesses = [];
+var incorrectGuesses = [];
+// variable for letters in the phrase
+var phraseLetters = [];
+
+// variable for characters pressed 
+var characters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "'"];
+
+// variable for all the possible word/phrase choices 
+var phrases = ["ahhhh stop i coulda dropped my croissant",
+"happy christhuns, it's chrismah, merry chrisis, merry chrysler",
+"this bitch empty, yeeet",
+"fr e sh a voca do", "you're not my dad",
+"whoever threw that paper ur mom's a hoe",
+"dahhdee, do i look like ur daddy",
+"he needs some milk",
+"i'm washing me and my clothes",
+"it's fricken bats, i love halloween",
+"it is wednesday my dudes aaahhhhhhhhhh",
+"has anyone ever told you you look like beyonce",
+"hey i'm a lesbian, i thought you wewe amewican",
+"suh dude",
+"waawagha, lipstick in my valentino white bag",
+"hoe don't do it, oh my god",
+"uuuhhughhughfuckin ugh",
+"if ur shorts aren't high waisted, what are they",
+"you got eczema",
+"Zach stop"
+];
+
+// Math.floor(Math.random) - something like that will be necessary - looks like it will need to go in my function to start the game
+var phrase = phrases[Math.floor(Math.random() * phrases.length)];
+    console.log(phrase);
+
+// add something to create an underscore - split() Tip: If an empty string ("") is used as the separator, the string is split between each character. w3schools
+
+gameStart();
 
 
 
+function gameStart () {
+    for (var i = 0; i < phrase.length; i++) {
+    //phraseLetters[i] = "_";
+    phrase.split("");
+    phraseLetters.push('_'); 
+}
+
+   // phraseLetters = phrase.split('');
+    //numberOfBlanks = phraseLetters.legth;
+    console.log(phraseLetters);
+}
+
+document.onkeyup = function(firstEvent) {
+    var guessedLetters = firstEvent.key;
+    for (var i = 0; i < characters.length; i++) {
+        if (guessedLetters === characters[i]) {
+            console.log(i)
+            console.log(guessedLetters); 
+        }
+    }
+}
+// come back to ^ sucks
 
 
-    
-
-
+</script>
 </body>
 </html>
