@@ -84,7 +84,13 @@ function gameStart () {
 
     for (var i = 0; i < numberOfBlanks; i++) {
     //phraseLetters[i] = "_";
-    phraseLetters.push('_');
+    //if statement " "
+    if (correctGuesses[i] === " ") {
+        phraseLetters.push(" ");
+    }
+    else {
+         phraseLetters.push('_');
+    }
     //numberOfBlanks = phraseLetters;
 
     document.getElementById('phraseToGuess').innerHTML = 
