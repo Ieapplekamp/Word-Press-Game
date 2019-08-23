@@ -7,6 +7,26 @@
 </head>
 
 <body>
+
+<h1 id="phraseToGuess"></h1>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <script>
 // Name that vine
 var WinsTotal = 0;
@@ -56,29 +76,35 @@ var phrase = phrases[Math.floor(Math.random() * phrases.length)];
 gameStart();
 
 
-
+// Function to start the game (duh)
 function gameStart () {
+    
     for (var i = 0; i < phrase.length; i++) {
     //phraseLetters[i] = "_";
-    phrase.split("");
-    phraseLetters.push('_'); 
-}
+    phrase.split('');
+    phraseLetters.push('_');
+    //numberOfBlanks = phraseLetters;
 
-   // phraseLetters = phrase.split('');
-    //numberOfBlanks = phraseLetters.legth;
+    document.getElementById('phraseToGuess').innerHTML = 
+    phraseLetters;
+} 
+
+    document.getElementById('phraseToGuess').innerHTML = phraseLetters.join(' ');
+
     console.log(phraseLetters);
+    
 }
 
+// Function to grab the user key 
 document.onkeyup = function(firstEvent) {
     var guessedLetters = firstEvent.key;
     for (var i = 0; i < characters.length; i++) {
         if (guessedLetters === characters[i]) {
-            console.log(i)
+            //console.log(i)
             console.log(guessedLetters); 
         }
     }
 }
-// come back to ^ sucks
 
 
 </script>
