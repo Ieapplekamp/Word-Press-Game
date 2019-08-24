@@ -17,7 +17,7 @@ var LossesTotal = 0;
 
 // variable for the amount of guesses
 var guessAmount = 10;
-var youWin = 0;
+//var youWin = 0;
 // variable for the amount of blank spaces and good/bad guesses
 var numberOfBlanks = 0;
 var correctGuesses = [];
@@ -47,7 +47,7 @@ var phrases = ["ahhhh stop i coulda dropped my croissant",
 "uuuhhughhughfuckin ugh",
 "if ur shorts aren't high waisted, what are they",
 "you got eczema",
-"Zach stop"
+"zach stop"
 ];
 
 // Math.floor(Math.random) - something like that will be necessary - looks like it will need to go in my function to start the game
@@ -63,7 +63,10 @@ var phrase = phrases[Math.floor(Math.random() * phrases.length)];
 function gameStart () {
     
     correctGuesses = phrase.split('');
+    console.log(phrase, "this is the phrase")
+    console.log(correctGuesses, "correctGuesses (array)");
     numberOfBlanks = correctGuesses.length;
+    
 
     for (var i = 0; i < numberOfBlanks; i++) {
     //phraseLetters[i] = "_";
@@ -96,8 +99,8 @@ function gameStart () {
 
 // Function that will do something with the userkey, in terms of guessing the correct letters at a given index 
 function userkey(e) { // e === event 
-    // cool - now it's not picking up the letter z 
-    if (phrase.indexOf(e) > -1 || phrase.indexOf(e) === 1) {
+    
+    if (phrase.indexOf(e) > -1) {
         // need more clarification on the -1 idea -I think I get it tho
         for (var i = 0; i < numberOfBlanks; i++) {
             
@@ -125,7 +128,10 @@ function userkey(e) { // e === event
 
 //cannot get it to alert you win atm
 function guesses() {
-    if (numberOfBlanks.lenth === 0) {
+
+    //var youWin = numberOfBlanks.replace(/''/gi).replace(/','/gi).replace(/"'"/gi);
+
+    if (numberOfBlanks.length === 0) {
         alert("YOU WON");
     } else if (guessAmount === 0) {
         alert("YOU SUCK");
