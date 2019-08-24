@@ -4,28 +4,18 @@
 <head>
     <meta charset="UTF-8">
     <title>Word Press Game</title>
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 </head>
 
 <body>
 
+    <header>
+        <h1>WELCOME</h1>
+        <h3>TO</h3>
+        <h1>NAME THAT VINE</h1>
+    </header>
+
 <h1 id="phraseToGuess"></h1>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 <script>
 // Name that vine
@@ -86,7 +76,7 @@ function gameStart () {
     //phraseLetters[i] = "_";
     //if statement " "
     if (correctGuesses[i] === " ") {
-        phraseLetters.push("&nbsp;");
+        phraseLetters.push("&nbsp;"); 
     }
     else {
          phraseLetters.push('_');
@@ -103,11 +93,11 @@ function gameStart () {
     
 }
 
-// Function that will do something with the userkey in terms of the blank array
+// Function that will do something with the userkey, in terms of guessing the correct letters at a given index 
 function userkey(e) { // e === event 
     
     if (phrase.indexOf(e) > -1) {
-        
+        // need more clarification on the -1 idea -I think I get it tho
         for (var i = 0; i < numberOfBlanks; i++) {
             
             if (correctGuesses[i] === e) {
@@ -120,6 +110,10 @@ function userkey(e) { // e === event
     }
 
 }
+
+// This should be the last function - Do something with the user
+
+
 
 gameStart();
 
