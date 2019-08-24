@@ -13,10 +13,20 @@
 
 // variable - wins & losses 
 var WinsTotal = 0;
-var LossesTotal = 0; 
+var LossesTotal = 0;
+
+// variable for the amount of guesses
+var guessAmount = 10;
+var youWin = 0;
+// variable for the amount of blank spaces and good/bad guesses
+var numberOfBlanks = 0;
+var correctGuesses = [];
+var incorrectGuesses = [];
+// variable for letters in the phrase
+var phraseLetters = [];
 
 // variable for characters pressed 
-var characters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "'"];
+var characters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "'", ","];
 
 // variable for all the possible word/phrase choices 
 var phrases = ["ahhhh stop i coulda dropped my croissant",
@@ -40,25 +50,106 @@ var phrases = ["ahhhh stop i coulda dropped my croissant",
 "Zach stop"
 ];
 
-// Math.floor(Math.random) - something like that will be necessary 
+// Math.floor(Math.random) - something like that will be necessary - looks like it will need to go in my function to start the game
 var phrase = phrases[Math.floor(Math.random() * phrases.length)];
     console.log(phrase);
 
-// variable for the amount of guesses
-var guessAmount = 8;
-
-// variable for how many letters are in the word/phrase
 // add something to create an underscore - split() Tip: If an empty string ("") is used as the separator, the string is split between each character. w3schools
-var phraseLetters = [];
-for (var i = 0; i < phrase.length; i++) {
-    phraseLetters[i] = "_";
-    //phrase.split("");
-   // phraseLetters.push('_'); 
-    console.log(phraseLetters);
-}
-// ^ not the best, throws out a lot of "statments" in the console
 
-// variable for the amount of blank spaces and good/bad guesses
-var numberOfBlanks = 0;
-var correctGuesses = [];
-var incorrectGuesses = [];
+
+
+
+// Function to start the game, this is actually the first function
+function gameStart () {
+    
+    correctGuesses = phrase.split('');
+    numberOfBlanks = correctGuesses.length;
+
+    for (var i = 0; i < numberOfBlanks; i++) {
+    //phraseLetters[i] = "_";
+    //if statement " "
+    if (correctGuesses[i] === " ") {
+        phraseLetters.push("&nbsp;"); 
+    }
+    else if (correctGuesses[i] === "'") {
+        phraseLetters.push("&#39;"); 
+    }
+    else if (correctGuesses[i] === ",") {
+        phraseLetters.push("&#44;"); 
+    }
+    else {
+         phraseLetters.push('_');
+    }
+    //numberOfBlanks = phraseLetters;
+
+    document.getElementById('phraseToGuess').innerHTML = 
+    phraseLetters;
+} 
+
+    document.getElementById('phraseToGuess').innerHTML = phraseLetters.join(' ');
+    document.getElementById('guesses-left').innerHTML = 'Guesses Left: ' + guessAmount;
+    
+
+    //console.log(phraseLetters);
+    
+}
+
+// Function that will do something with the userkey, in terms of guessing the correct letters at a given index 
+function userkey(e) { // e === event 
+    // cool - now it's not picking up the letter z 
+    if (phrase.indexOf(e) > -1 || phrase.indexOf(e) === 1) {
+        // need more clarification on the -1 idea -I think I get it tho
+        for (var i = 0; i < numberOfBlanks; i++) {
+            
+            if (correctGuesses[i] === e) {
+                
+                phraseLetters[i] = e;
+                document.getElementById('phraseToGuess').innerHTML = phraseLetters.join(' ');
+                //console.log('IT WORKS');
+            } 
+        } 
+    } else {
+        incorrectGuesses.push(e);
+        guessAmount--;
+        // I tried this 100 million ways and i'm 99.999% my issue with getting it had to do with a positioning (fucking annoying)
+        document.getElementById('guesses-left').innerHTML = 'Guesses Left: ' + guessAmount;
+        //document.getElementById('wrong-guess').innerHTML =  incorrectGuesses;
+        document.getElementById('wrong-guess').innerHTML = 'That is not correct: ' + incorrectGuesses.join(' ');
+        console.log(incorrectGuesses); // IT WORKS
+    }
+
+}
+
+
+// This should be the last function - Do something with the user guesses if its a win or else a loss. It should probably be called at the end in the document.onkeyup 
+
+//cannot get it to alert you win atm
+function guesses() {
+    if (numberOfBlanks.lenth === 0) {
+        alert("YOU WON");
+    } else if (guessAmount === 0) {
+        alert("YOU SUCK");
+    }
+    
+    
+}
+
+
+
+gameStart();
+
+// Function to grab the user key, should probably go towards the bottom
+document.onkeyup = function(firstEvent) {
+    var guessedLetters = firstEvent.key;
+    for (var i = 0; i < characters.length; i++) {
+        if (guessedLetters === characters[i]) {
+            //console.log(i)
+            console.log(guessedLetters); 
+            // the console log above only works if the console.log(phraseletters) is also being used
+            userkey(guessedLetters);
+            guesses();
+        }
+    // inside the if statment above is where I will call another function with userkeys
+    }
+}
+
