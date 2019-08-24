@@ -16,6 +16,13 @@
     </header>
 
 <h1 id="phraseToGuess"></h1>
+<div>
+<h2 id="guesses-left">Guesses Left: 10</h2>
+</div>
+
+<div>
+<h2 id="wrong-guess">Wrong Guesses: </h2>
+</div>
 
 <script>
 // Name that vine
@@ -23,7 +30,7 @@ var WinsTotal = 0;
 var LossesTotal = 0;
 
 // variable for the amount of guesses
-var guessAmount = 8;
+var guessAmount = 10;
 
 // variable for the amount of blank spaces and good/bad guesses
 var numberOfBlanks = 0;
@@ -88,8 +95,10 @@ function gameStart () {
 } 
 
     document.getElementById('phraseToGuess').innerHTML = phraseLetters.join(' ');
+    document.getElementById('guesses-left').innerHTML = 'Guesses Left: ' + guessAmount;
+    
 
-    console.log(phraseLetters);
+    //console.log(phraseLetters);
     
 }
 
@@ -105,13 +114,29 @@ function userkey(e) { // e === event
                 phraseLetters[i] = e;
                 document.getElementById('phraseToGuess').innerHTML = phraseLetters.join(' ');
                 console.log('IT WORKS');
-            }
-        }
+            } 
+        } 
+    } else {
+        incorrectGuesses.push(e);
+        guessAmount--;
+        // I tried this 100 million ways and i'm 99.999% my issue with getting it had to do with a positioning (fucking annoying)
+        document.getElementById('guesses-left').innerHTML = 'Guesses Left: ' + guessAmount;
+        //document.getElementById('wrong-guess').innerHTML =  incorrectGuesses;
+        document.getElementById('wrong-guess').innerHTML = 'That is not correct: ' + incorrectGuesses.join(' ');
+        console.log(incorrectGuesses); // IT WORKS
     }
 
 }
 
-// This should be the last function - Do something with the user
+
+// This should be the last function - Do something with the user guesses if its a win or else a loss. It should probably be called at the end in the document.onkeyup
+//function guesses() {
+    //if (guessAmount === 0) {
+
+    //}
+//}
+
+
 
 
 
