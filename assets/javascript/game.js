@@ -13,13 +13,13 @@
 
 // variable - wins & losses 
 var WinsTotal = 0;
-var LossesTotal = 0;
+
 
 // variable for the amount of guesses
 var guessAmount = 10;
-//var youWin = 0;
+var youWin = 0;
 // variable for the amount of blank spaces and good/bad guesses
-var numberOfBlanks = 0;
+var numberOfBlanks = "";
 var correctGuesses = [];
 var incorrectGuesses = [];
 // variable for letters in the phrase
@@ -51,8 +51,7 @@ var phrases = ["ahhhh stop i coulda dropped my croissant",
 ];
 
 // Math.floor(Math.random) - something like that will be necessary - looks like it will need to go in my function to start the game
-var phrase = phrases[Math.floor(Math.random() * phrases.length)];
-    console.log(phrase);
+var phrase = "";
 
 // add something to create an underscore - split() Tip: If an empty string ("") is used as the separator, the string is split between each character. w3schools
 
@@ -62,9 +61,13 @@ var phrase = phrases[Math.floor(Math.random() * phrases.length)];
 // Function to start the game, this is actually the first function
 function gameStart () {
     
+    phrase = phrases[Math.floor(Math.random() * phrases.length)];
+    console.log(phrase);
+
     correctGuesses = phrase.split('');
-    console.log(phrase, "this is the phrase")
-    console.log(correctGuesses, "correctGuesses (array)");
+    //correctGuesses.join('');
+    //console.log(phrase, "this is the phrase")
+    //console.log(correctGuesses, "correctGuesses (array)");
     numberOfBlanks = correctGuesses.length;
     
 
@@ -81,9 +84,8 @@ function gameStart () {
         phraseLetters.push("&#44;"); 
     }
     else {
-         phraseLetters.push('_');
+        phraseLetters.push('_');
     }
-    //numberOfBlanks = phraseLetters;
 
     document.getElementById('phraseToGuess').innerHTML = 
     phraseLetters;
@@ -92,8 +94,6 @@ function gameStart () {
     document.getElementById('phraseToGuess').innerHTML = phraseLetters.join(' ');
     document.getElementById('guesses-left').innerHTML = 'Guesses Left: ' + guessAmount;
     
-
-    //console.log(phraseLetters);
     
 }
 
@@ -129,10 +129,17 @@ function userkey(e) { // e === event
 //cannot get it to alert you win atm
 function guesses() {
 
-    //var youWin = numberOfBlanks.replace(/''/gi).replace(/','/gi).replace(/"'"/gi);
+    console.log('guesses function');
 
-    if (numberOfBlanks.length === 0) {
+    youWin = numberOfBlanks.toString().replace(/' '/gi, '').replace(/','/gi, '').replace(/"'"/gi, '');
+    //winner = youWin.toString();
+
+    console.log('Working');
+    //phrases = numberOfBlanks.join('');
+    if (youWin === 0) {
+        console.log("it's working " + numberOfBlanks);
         alert("YOU WON");
+
     } else if (guessAmount === 0) {
         alert("YOU SUCK");
     }
