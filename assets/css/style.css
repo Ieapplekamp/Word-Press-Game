@@ -1,4 +1,9 @@
 body {
+    color: purple;
     background-color: pink;
-   /* background-image: url(/assets/images/milkandvine.jpg); */
+    background-image: url(../images/milkandvine.jpg);
+    background-repeat: no-repeat;
+    background-position: 100%;
+    
+
 }

@@ -4,7 +4,7 @@
 
 
 
-
+// this has been the worst assignment yet. Im so fucking close to dropping this class, ive fucking cried because of how stupid i feel and the because i can't ever get a straight answer. like to work on the same fucking block of code for 5+ hours and not get a clear answer? im fucking done
 
 // if statement for when a player types something -if they get it right or wrong
 //something to add the character to the screen - maybe do something to change the visibilty when the correct character is pressed (on.keyup thing)
@@ -107,6 +107,9 @@ function userkey(e) { // e === event
             if (correctGuesses[i] === e) {
                 
                 phraseLetters[i] = e;
+                //numberOfBlanks--; sometimes it does stuff most times it wont let me finish building the word
+                //numberOfBlanks.length--; this doesnt work
+                //youWin--; that does nothin 
                 document.getElementById('phraseToGuess').innerHTML = phraseLetters.join(' ');
                 //console.log('IT WORKS');
             } 
@@ -130,13 +133,13 @@ function userkey(e) { // e === event
 function guesses() {
 
     console.log('guesses function');
-
+    //numberOfBlanks = phraseLetters.length;
     youWin = numberOfBlanks.toString().replace(/' '/gi, '').replace(/','/gi, '').replace(/"'"/gi, '');
-    //winner = youWin.toString();
+    
 
-    console.log('Working');
+    console.log(numberOfBlanks);
     //phrases = numberOfBlanks.join('');
-    if (youWin === 0) {
+    if (youWin == 0) {
         console.log("it's working " + numberOfBlanks);
         alert("YOU WON");
 
