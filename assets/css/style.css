@@ -10,9 +10,14 @@ body {
 
 header {
     display: inline-block;
-    
 }
 
+img {
+    float: right;
+    width: 30%;
+    margin-right: 20%;
+    margin-bottom: 5%;
+}
 
 #phraseToGuess {
     display: flex-wrap;
@@ -32,3 +37,9 @@ header {
 .spacing {
     padding-top: 5%;
 } 
+iframe {
+    width: 500px;
+    height: 400px;
+    padding-right: 4%;
+    padding-left: 0;
+}
