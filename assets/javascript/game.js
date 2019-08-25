@@ -68,10 +68,10 @@ function gameStart () {
     //correctGuesses.join('');
     //console.log(phrase, "this is the phrase")
     //console.log(correctGuesses, "correctGuesses (array)");
-    numberOfBlanks = correctGuesses.length;
+    //numberOfBlanks = correctGuesses.length;
     
 
-    for (var i = 0; i < numberOfBlanks; i++) {
+    for (var i = 0; i < correctGuesses.length; i++) {
     //phraseLetters[i] = "_";
     //if statement " "
     if (correctGuesses[i] === " ") {
@@ -85,6 +85,7 @@ function gameStart () {
     }
     else {
         phraseLetters.push('_');
+        numberOfBlanks++;
     }
 
     document.getElementById('phraseToGuess').innerHTML = 
@@ -102,13 +103,13 @@ function userkey(e) { // e === event
     
     if (phrase.indexOf(e) > -1) {
         // need more clarification on the -1 idea -I think I get it tho
-        for (var i = 0; i < numberOfBlanks; i++) {
+        for (var i = 0; i < correctGuesses.length; i++) {
             
-            if (correctGuesses[i] === e) {
+            if (correctGuesses[i] === e && phraseLetters[i] === "_") {
                 
                 phraseLetters[i] = e;
                 //numberOfBlanks--; sometimes it does stuff most times it wont let me finish building the word
-                //numberOfBlanks.length--; this doesnt work
+                numberOfBlanks--; //this doesnt work yet
                 //youWin--; that does nothin 
                 document.getElementById('phraseToGuess').innerHTML = phraseLetters.join(' ');
                 //console.log('IT WORKS');
@@ -134,12 +135,12 @@ function guesses() {
 
     console.log('guesses function');
     //numberOfBlanks = phraseLetters.length;
-    youWin = numberOfBlanks.toString().replace(/' '/gi, '').replace(/','/gi, '').replace(/"'"/gi, '');
+    //youWin = numberOfBlanks.toString().replace(/' '/gi, '').replace(/','/gi, '').replace(/"'"/gi, '');
     
 
     console.log(numberOfBlanks);
     //phrases = numberOfBlanks.join('');
-    if (youWin == 0) {
+    if (numberOfBlanks == 0) {
         console.log("it's working " + numberOfBlanks);
         alert("YOU WON");
 
