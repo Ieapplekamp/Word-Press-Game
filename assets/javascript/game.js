@@ -3,9 +3,6 @@
 
 
 
-
-// this has been the worst assignment yet. Im so fucking close to dropping this class, ive fucking cried because of how stupid i feel and the because i can't ever get a straight answer. like to work on the same fucking block of code for 5+ hours and not get a clear answer? im fucking done
-
 // if statement for when a player types something -if they get it right or wrong
 //something to add the character to the screen - maybe do something to change the visibilty when the correct character is pressed (on.keyup thing)
 // if they get it wrong subtract a guess or add a body part
@@ -30,7 +27,6 @@ var characters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m
 
 // variable for all the possible word/phrase choices 
 var phrases = ["ahhhh stop i coulda dropped my croissant",
-"happy christhuns, it's chrismah, merry chrisis, merry chrysler",
 "this bitch empty, yeeet",
 "fr e sh a voca do", "you're not my dad",
 "whoever threw that paper ur mom's a hoe",

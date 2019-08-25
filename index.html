@@ -3,9 +3,11 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Word Press Game</title>
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <link rel="javascript" href="assets/javascript/game.js">
+
 </head>
 
 <body>
@@ -13,18 +15,18 @@
     <header>
         <h1>WELCOME</h1>
         <h3>TO</h3>
-        <h1>NAME THAT VINE</h1>
+        <h1 class="special">NAME THAT VINE</h1>
     </header>
 
-<h1 id="phraseToGuess"></h1>
-<div>
-<h2 id="guesses-left">Guesses Left: 10</h2>
-</div>
-
-<div>
-<h2 id="wrong-guess">Wrong Guesses: </h2>
-</div>
-
+    <div class="floats">
+        <h1 id="phraseToGuess"></h1>
+        <div>
+            <h2 id="guesses-left" class="spacing">Guesses Left: 10</h2>
+        </div>
+        <div>
+            <h2 id="wrong-guess" class="spacing">Wrong Guesses: </h2>
+        </div>
+    </div>
 
 </body>
 <script src="./assets/javascript/game.js"></script>
