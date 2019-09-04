@@ -16,7 +16,8 @@ var characters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m
 // variable for all the possible word/phrase choices 
 var phrases = ["ahhhh stop i coulda dropped my croissant",
 "this bitch empty, yeeet",
-"fr e sh a voca do", "you're not my dad",
+"fr e sh a voca do",
+"you're not my dad",
 "whoever threw that paper ur mom's a hoe",
 "dahhdee, do i look like ur daddy",
 "he needs some milk",
@@ -67,6 +68,7 @@ function gameStart () {
         numberOfBlanks++;
     }
 
+    imageReplacement();
     document.getElementById('phraseToGuess').innerHTML = 
     phraseLetters;
 } 
@@ -77,19 +79,48 @@ function gameStart () {
 }
 
 
-//function imageReplacement() {
+function imageReplacement() {   // this ended up being a lot more than i thought
 
-    // Not exactly what I thought it was [tried to refer to the in class assignment for this function, but it was written in jquery and I wanted to do this assigment with just JavaScript]
-    // originally I had put all the images in the html and set the visibilty to hidden, but that didn't work. Then my next idea was to try to just change the image itself using JS, however I keep running into a console.log issue of null.
-    // My last idea is to set an array = to all the image possibilites (Everything I looked up mentioned the idea of doing it as an object), and then do some conditional statements for when the random phrase is chosen, it'll select the correct image to match it (I've just run out of time to try to put that theory to code (I added a fun video to watch that'll give you some answer)
-
-   // phrase = phrases[Math.floor(Math.random() * phrases.length)];
-   // console.log(phrase);
-
-   // if (phrase === "zach stop") {
-   //     document.getElementById('#images').src = "zachstop.jpg";
-   // }
-//}
+    if (phrase === "zach stop") {
+        document.getElementById('images').src = "./assets/images/zachstop.jpg";
+    } else if (phrase === "you got eczema") {
+        document.getElementById('images').src = "./assets/images/ezcma.jpg";
+    } else if (phrase === "if ur shorts aren't high waisted, what are they") {
+        document.getElementById('images').src = "./assets/images/highwaisted.jpg";
+    } else if (phrase === "uuuhhughhughfuckin ugh") {
+        document.getElementById('images').src = "./assets/images/ugh.jpg";
+    } else if (phrase === "hoe don't do it, oh my god") {
+        document.getElementById('images').src = "./assets/images/dontdoit.jpg";
+    } else if (phrase === "waawagha, lipstick in my valentino white bag") {
+        document.getElementById('images').src = "./assets/images/valentino.jpg";
+    } else if (phrase === "suh dude") {
+        document.getElementById('images').src = "./assets/images/suhdude.jpg";
+    } else if (phrase === "hey i'm a lesbian, i thought you wewe amewican") {
+        document.getElementById('images').src = "./assets/images/lesbian.jpg";
+    } else if (phrase === "has anyone ever told you you look like beyonce") {
+        document.getElementById('images').src = "./assets/images/beyonce.jpg";
+    } else if (phrase === "it is wednesday my dudes aaahhhhhhhhhh") {
+        document.getElementById('images').src = "./assets/images/wednesday.jpg";
+    } else if (phrase === "it's fricken bats, i love halloween") {
+        document.getElementById('images').src = "./assets/images/halloween.jpg";
+    } else if (phrase === "i'm washing me and my clothes") {
+        document.getElementById('images').src = "./assets/images/menmyclothes.jpg";
+    } else if (phrase === "he needs some milk") {
+        document.getElementById('images').src = "./assets/images/milk.jpg";
+    } else if (phrase === "dahhdee, do i look like ur daddy") {
+        document.getElementById('images').src = "./assets/images/daddy.jpg" // this one needs a new image
+    } else if (phrase === "whoever threw that paper ur mom's a hoe") {
+        document.getElementById('images').src = "./assets/images/urmomahoe.jpg";
+    } else if (phrase === "you're not my dad") {
+        document.getElementById('images').src = "./assets/images/notmydad.jpg";
+    } else if (phrase === "fr e sh a voca do") {
+        document.getElementById('images').src = "./assets/images/freshavocado.jpg";
+    } else if (phrase === "this bitch empty, yeeet") {
+        document.getElementById('images').src = "./assets/images/yeeet.jpg";
+    } else if (phrase === "ahhhh stop i coulda dropped my croissant") {
+        document.getElementById('images').src = "./assets/images/croissant.jpg";
+    }
+}
 
 // Function that will do something with the userkey, in terms of guessing the correct letters at a given index 
 function userkey(e) { // e === event 
@@ -143,9 +174,8 @@ function guesses() {
     
 }
 
+// imageReplacement();
 gameStart();
-//imageReplacement();
-
 // Function to grab the user key, should probably go towards the bottom
 document.onkeyup = function(firstEvent) {
     var guessedLetters = firstEvent.key;
