@@ -1,7 +1,8 @@
-// Based off the book - milk and vine by adam gasiewski & emily beck
-
 // variable for the amount of guesses
 var guessAmount = 10;
+
+var wins = 0;
+var losses = 0;
 
 // variable for the amount of blank spaces and good/bad guesses
 var numberOfBlanks = "";
@@ -35,7 +36,7 @@ var phrases = ["ahhhh stop i coulda dropped my croissant",
 "zach stop"
 ];
 
-// Math.floor(Math.random) - go in my function to start the game
+
 var phrase = "";
 
 
@@ -52,34 +53,34 @@ function gameStart () {
     
 
     for (var i = 0; i < correctGuesses.length; i++) {
-    //phraseLetters[i] = "_";
-    //if statement " "
-    if (correctGuesses[i] === " ") {
-        phraseLetters.push("&nbsp;"); 
-    }
-    else if (correctGuesses[i] === "'") {
-        phraseLetters.push("&#39;"); 
-    }
-    else if (correctGuesses[i] === ",") {
-        phraseLetters.push("&#44;"); 
-    }
-    else {
-        phraseLetters.push('_');
-        numberOfBlanks++;
-    }
+    
+        if (correctGuesses[i] === " ") {
+            phraseLetters.push("&nbsp;"); 
+        }
+        else if (correctGuesses[i] === "'") {
+            phraseLetters.push("&#39;"); 
+        }
+        else if (correctGuesses[i] === ",") {
+            phraseLetters.push("&#44;"); 
+        }
+        else {
+            phraseLetters.push('_');
+            numberOfBlanks++;
+        }
 
-    imageReplacement();
-    document.getElementById('phraseToGuess').innerHTML = 
-    phraseLetters;
-} 
-
+        imageReplacement();
+        $('#phraseToGuess').text = phraseLetters;
+        // document.getElementById('phraseToGuess').innerHTML = 
+        // phraseLetters;
+    } 
+    // $("#phraseToGuess").append(' ');
     document.getElementById('phraseToGuess').innerHTML = phraseLetters.join(' ');
     document.getElementById('guesses-left').innerHTML = 'Guesses Left: ' + guessAmount;
     
 }
 
-
-function imageReplacement() {   // this ended up being a lot more than i thought
+// this is the ugliest thing... make it a switch
+function imageReplacement() { 
 
     if (phrase === "zach stop") {
         document.getElementById('images').src = "./assets/images/zachstop.jpg";
@@ -123,58 +124,56 @@ function imageReplacement() {   // this ended up being a lot more than i thought
 }
 
 // Function that will do something with the userkey, in terms of guessing the correct letters at a given index 
-function userkey(e) { // e === event 
+function userkey(e) { 
     
     if (phrase.indexOf(e) > -1) {
-        // need a little more clarification on the -1 idea -I think I get it tho, it has to do with the possibly of something being added to the array, or possibly not declared but still able to pull, like if the array were reassigned somewhere else (if that make sense)
+       
         for (var i = 0; i < correctGuesses.length; i++) {
             
             if (correctGuesses[i] === e && phraseLetters[i] === "_") {
                 
                 phraseLetters[i] = e;
-                //numberOfBlanks--; sometimes it does stuff most times it wont let me finish building the word
-                numberOfBlanks--; //this doesnt work yet (I figured out my issue)
-                //youWin--; that does nothin 
+                
+                numberOfBlanks--; 
                 document.getElementById('phraseToGuess').innerHTML = phraseLetters.join(' ');
                 
             } 
         } 
+        
     } else {
         incorrectGuesses.push(e);
         guessAmount--;
-        // I tried this 100 million ways and i'm 99.999% my issue with getting it had to do with a positioning (it works)
         document.getElementById('guesses-left').innerHTML = 'Guesses Left: ' + guessAmount;
         document.getElementById('wrong-guess').innerHTML = 'That is not correct: ' + incorrectGuesses.join(' ');
-        console.log(incorrectGuesses); // IT WORKS
+        console.log(incorrectGuesses); 
     }
 
 }
 
-
-// This should be the last function - Do something with the user guesses if its a win or else a loss. It should probably be called at the end in the document.onkeyup 
 
 
 function guesses() {
-
-    console.log('guesses function');
-    //numberOfBlanks = phraseLetters.length;
-    //youWin = numberOfBlanks.toString().replace(/' '/gi, '').replace(/','/gi, '').replace(/"'"/gi, ''); <-- yeah i couldn't figure this out
     
 
     console.log(numberOfBlanks);
-    //phrases = numberOfBlanks.join(''); <- test
+    
     if (numberOfBlanks == 0) {
         console.log("it's working " + numberOfBlanks);
         alert("YOU WON");
+        $('#phraseToGuess').empty();
+        gameStart();
+        
 
     } else if (guessAmount === 0) {
         alert("YOU SUCK, TRY AGAIN");
+        gameStart();
+        
     }
     
     
 }
 
-// imageReplacement();
+
 gameStart();
 // Function to grab the user key, should probably go towards the bottom
 document.onkeyup = function(firstEvent) {
@@ -183,11 +182,11 @@ document.onkeyup = function(firstEvent) {
         if (guessedLetters === characters[i]) {
             
             console.log(guessedLetters); 
-            // the console log above only works if the console.log(phraseletters) is also being used
+            
             userkey(guessedLetters);
             guesses();
         }
-    // inside the if statment above is where I will call another function with userkeys
+    
     }
 }
 
