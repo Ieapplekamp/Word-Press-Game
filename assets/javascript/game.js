@@ -36,20 +36,26 @@ var phrases = ["ahhhh stop i coulda dropped my croissant",
 "zach stop"
 ];
 
-
 var phrase = "";
-
 
 // Function to start the game, this is actually the first function
 function gameStart () {
     
-    
     phrase = phrases[Math.floor(Math.random() * phrases.length)];
-    console.log(phrase);
+    guessAmount = 10;
 
+    wins = 0;
+    losses = 0;
+
+    numberOfBlanks = "";
+    correctGuesses = [];
+    incorrectGuesses = [];
+    phraseLetters = [];
+
+
+    characters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
     correctGuesses = phrase.split('');
-    //correctGuesses.join('');
-    //numberOfBlanks = correctGuesses.length;
+    
     
 
     for (var i = 0; i < correctGuesses.length; i++) {
@@ -69,11 +75,10 @@ function gameStart () {
         }
 
         imageReplacement();
-        $('#phraseToGuess').text = phraseLetters;
-        // document.getElementById('phraseToGuess').innerHTML = 
-        // phraseLetters;
+        $('#phraseToGuess').html(phraseLetters);
+        
     } 
-    // $("#phraseToGuess").append(' ');
+    
     document.getElementById('phraseToGuess').innerHTML = phraseLetters.join(' ');
     document.getElementById('guesses-left').innerHTML = 'Guesses Left: ' + guessAmount;
     
@@ -139,7 +144,7 @@ function userkey(e) {
                 
             } 
         } 
-        
+
     } else {
         incorrectGuesses.push(e);
         guessAmount--;
@@ -154,28 +159,23 @@ function userkey(e) {
 
 function guesses() {
     
-
-    console.log(numberOfBlanks);
-    
     if (numberOfBlanks == 0) {
-        console.log("it's working " + numberOfBlanks);
-        alert("YOU WON");
-        $('#phraseToGuess').empty();
-        gameStart();
         
+        alert("YOU WON");
+        gameStart();
 
     } else if (guessAmount === 0) {
+
         alert("YOU SUCK, TRY AGAIN");
         gameStart();
         
     }
     
-    
 }
 
 
 gameStart();
-// Function to grab the user key, should probably go towards the bottom
+
 document.onkeyup = function(firstEvent) {
     var guessedLetters = firstEvent.key;
     for (var i = 0; i < characters.length; i++) {
@@ -189,4 +189,3 @@ document.onkeyup = function(firstEvent) {
     
     }
 }
-
