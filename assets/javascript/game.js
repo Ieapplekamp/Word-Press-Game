@@ -1,30 +1,24 @@
-// variable for the amount of guesses
-var guessAmount = 10;
-
+var guessAmount = 8;
 var wins = 0;
 var losses = 0;
-
-// variable for the amount of blank spaces and good/bad guesses
 var numberOfBlanks = "";
 var correctGuesses = [];
 var incorrectGuesses = [];
 // variable for letters in the phrase
 var phraseLetters = [];
-
-// variable for characters pressed 
+// characters possible to pressed 
 var characters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 
-// variable for all the possible word/phrase choices 
-var phrases = ["ahhhh stop i coulda dropped my croissant",
+var phrases = ["stop i coulda dropped my croissant",
 "this bitch empty, yeeet",
 "fr e sh a voca do",
 "you're not my dad",
-"whoever threw that paper ur mom's a hoe",
-"dahhdee, do i look like ur daddy",
+"whoever threw that paper your mom's a hoe",
+"dahhdi, do i look like ur daddy",
 "he needs some milk",
 "i'm washing me and my clothes",
 "it's fricken bats, i love halloween",
-"it is wednesday my dudes aaahhhhhhhhhh",
+"it is wednesday my dudes",
 "has anyone ever told you you look like beyonce",
 "hey i'm a lesbian, i thought you wewe amewican",
 "suh dude",
@@ -39,24 +33,15 @@ var phrases = ["ahhhh stop i coulda dropped my croissant",
 var phrase = "";
 
 // Function to start the game, this is actually the first function
-function gameStart () {
+function gameStart() {
     
     phrase = phrases[Math.floor(Math.random() * phrases.length)];
-    guessAmount = 10;
-
-    wins = 0;
-    losses = 0;
-
+    guessAmount = 8;
     numberOfBlanks = "";
     correctGuesses = [];
     incorrectGuesses = [];
     phraseLetters = [];
-
-
-    characters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
     correctGuesses = phrase.split('');
-    
-    
 
     for (var i = 0; i < correctGuesses.length; i++) {
     
@@ -75,16 +60,16 @@ function gameStart () {
         }
 
         imageReplacement();
-        $('#phraseToGuess').html(phraseLetters);
+        document.getElementById('phraseToGuess').innerText = phraseLetters;
         
     } 
     
     document.getElementById('phraseToGuess').innerHTML = phraseLetters.join(' ');
-    document.getElementById('guesses-left').innerHTML = 'Guesses Left: ' + guessAmount;
+    document.getElementById('guesses-left').innerHTML = guessAmount;
     
 }
 
-// this is the ugliest thing... make it a switch
+// this is the ugliest thing... it should be a switch, but why fix what aint broke
 function imageReplacement() { 
 
     if (phrase === "zach stop") {
@@ -105,7 +90,7 @@ function imageReplacement() {
         document.getElementById('images').src = "./assets/images/lesbian.jpg";
     } else if (phrase === "has anyone ever told you you look like beyonce") {
         document.getElementById('images').src = "./assets/images/beyonce.jpg";
-    } else if (phrase === "it is wednesday my dudes aaahhhhhhhhhh") {
+    } else if (phrase === "it is wednesday my dudes") {
         document.getElementById('images').src = "./assets/images/wednesday.jpg";
     } else if (phrase === "it's fricken bats, i love halloween") {
         document.getElementById('images').src = "./assets/images/halloween.jpg";
@@ -113,9 +98,9 @@ function imageReplacement() {
         document.getElementById('images').src = "./assets/images/menmyclothes.jpg";
     } else if (phrase === "he needs some milk") {
         document.getElementById('images').src = "./assets/images/milk.jpg";
-    } else if (phrase === "dahhdee, do i look like ur daddy") {
+    } else if (phrase === "dahhdi, do i look like ur daddy") {
         document.getElementById('images').src = "./assets/images/daddy.jpg" // this one needs a new image
-    } else if (phrase === "whoever threw that paper ur mom's a hoe") {
+    } else if (phrase === "whoever threw that paper your mom's a hoe") {
         document.getElementById('images').src = "./assets/images/urmomahoe.jpg";
     } else if (phrase === "you're not my dad") {
         document.getElementById('images').src = "./assets/images/notmydad.jpg";
@@ -123,8 +108,8 @@ function imageReplacement() {
         document.getElementById('images').src = "./assets/images/freshavocado.jpg";
     } else if (phrase === "this bitch empty, yeeet") {
         document.getElementById('images').src = "./assets/images/yeeet.jpg";
-    } else if (phrase === "ahhhh stop i coulda dropped my croissant") {
-        document.getElementById('images').src = "./assets/images/croissant.jpg";
+    } else if (phrase === "stop i coulda dropped my croissant") {
+        document.getElementById('images').src = "./assets/images/stahhp.jpg";
     }
 }
 
@@ -138,54 +123,61 @@ function userkey(e) {
             if (correctGuesses[i] === e && phraseLetters[i] === "_") {
                 
                 phraseLetters[i] = e;
-                
                 numberOfBlanks--; 
                 document.getElementById('phraseToGuess').innerHTML = phraseLetters.join(' ');
                 
             } 
         } 
-
+        
     } else {
+
         incorrectGuesses.push(e);
         guessAmount--;
-        document.getElementById('guesses-left').innerHTML = 'Guesses Left: ' + guessAmount;
-        document.getElementById('wrong-guess').innerHTML = 'That is not correct: ' + incorrectGuesses.join(' ');
-        console.log(incorrectGuesses); 
+        document.getElementById('guesses-left').innerHTML = guessAmount;
+        document.getElementById('wrong-guess').innerHTML = incorrectGuesses.join(' ');
+    
     }
-
 }
-
-
 
 function guesses() {
     
     if (numberOfBlanks == 0) {
         
-        alert("YOU WON");
+        swal("You Won!!", "Congratulations!", "success",{
+            timer: 3000,
+        });
+        wins++;
+        document.getElementById('wins').innerHTML = wins;
+        
         gameStart();
 
-    } else if (guessAmount === 0) {
+    } else if(guessAmount === 0) {
 
-        alert("YOU SUCK, TRY AGAIN");
+        swal("You Lost!!", "Try again", "error",{
+            timer: 3000,
+        });
+        losses++;
+        document.getElementById('losses').innerHTML = losses;
+        
         gameStart();
         
     }
     
 }
 
-
 gameStart();
 
-document.onkeyup = function(firstEvent) {
+document.onkeyup = function (firstEvent) {
+    
     var guessedLetters = firstEvent.key;
+
     for (var i = 0; i < characters.length; i++) {
+
         if (guessedLetters === characters[i]) {
-            
-            console.log(guessedLetters); 
-            
             userkey(guessedLetters);
             guesses();
         }
     
     }
+
 }
