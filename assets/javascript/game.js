@@ -9,25 +9,22 @@ var phraseLetters = [];
 // characters possible to pressed 
 var characters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 
-var phrases = ["stop i coulda dropped my croissant",
-"this bitch empty, yeeet",
-"fr e sh a voca do",
-"you're not my dad",
-"whoever threw that paper your mom's a hoe",
-"dahhdi, do i look like ur daddy",
-"he needs some milk",
-"i'm washing me and my clothes",
-"it's fricken bats, i love halloween",
-"it is wednesday my dudes",
-"has anyone ever told you you look like beyonce",
-"hey i'm a lesbian, i thought you wewe amewican",
-"suh dude",
-"waawagha, lipstick in my valentino white bag",
-"hoe don't do it, oh my god",
-"uuuhhughhughfuckin ugh",
-"if ur shorts aren't high waisted, what are they",
-"you got eczema",
-"zach stop"
+var phrases = [
+    "hippopotamus",
+    "bloat",
+    "tower",
+    "giraffes",
+    "chicago",
+    'windy city',
+    "shanghai",
+    "oriental paris",
+    "new york city",
+    "city of dreams",
+    "cherry blossom",
+    "spring",
+    "mountain peaks",
+    "tulip",
+    "latte art"
 ];
 
 var phrase = "";
@@ -72,44 +69,22 @@ function gameStart() {
 // this is the ugliest thing... it should be a switch, but why fix what aint broke
 function imageReplacement() { 
 
-    if (phrase === "zach stop") {
-        document.getElementById('images').src = "./assets/images/zachstop.jpg";
-    } else if (phrase === "you got eczema") {
-        document.getElementById('images').src = "./assets/images/ezcma.jpg";
-    } else if (phrase === "if ur shorts aren't high waisted, what are they") {
-        document.getElementById('images').src = "./assets/images/highwaisted.jpg";
-    } else if (phrase === "uuuhhughhughfuckin ugh") {
-        document.getElementById('images').src = "./assets/images/ugh.jpg";
-    } else if (phrase === "hoe don't do it, oh my god") {
-        document.getElementById('images').src = "./assets/images/dontdoit.jpg";
-    } else if (phrase === "waawagha, lipstick in my valentino white bag") {
-        document.getElementById('images').src = "./assets/images/valentino.jpg";
-    } else if (phrase === "suh dude") {
-        document.getElementById('images').src = "./assets/images/suhdude.jpg";
-    } else if (phrase === "hey i'm a lesbian, i thought you wewe amewican") {
-        document.getElementById('images').src = "./assets/images/lesbian.jpg";
-    } else if (phrase === "has anyone ever told you you look like beyonce") {
-        document.getElementById('images').src = "./assets/images/beyonce.jpg";
-    } else if (phrase === "it is wednesday my dudes") {
-        document.getElementById('images').src = "./assets/images/wednesday.jpg";
-    } else if (phrase === "it's fricken bats, i love halloween") {
-        document.getElementById('images').src = "./assets/images/halloween.jpg";
-    } else if (phrase === "i'm washing me and my clothes") {
-        document.getElementById('images').src = "./assets/images/menmyclothes.jpg";
-    } else if (phrase === "he needs some milk") {
-        document.getElementById('images').src = "./assets/images/milk.jpg";
-    } else if (phrase === "dahhdi, do i look like ur daddy") {
-        document.getElementById('images').src = "./assets/images/daddy.jpg" // this one needs a new image
-    } else if (phrase === "whoever threw that paper your mom's a hoe") {
-        document.getElementById('images').src = "./assets/images/urmomahoe.jpg";
-    } else if (phrase === "you're not my dad") {
-        document.getElementById('images').src = "./assets/images/notmydad.jpg";
-    } else if (phrase === "fr e sh a voca do") {
-        document.getElementById('images').src = "./assets/images/freshavocado.jpg";
-    } else if (phrase === "this bitch empty, yeeet") {
-        document.getElementById('images').src = "./assets/images/yeeet.jpg";
-    } else if (phrase === "stop i coulda dropped my croissant") {
-        document.getElementById('images').src = "./assets/images/stahhp.jpg";
+    if (phrase === "mountain peaks") {
+        document.getElementById('images').src = "./assets/images/mountainpeaks.jpeg";
+    } else if (phrase === "cherry blossom" || phrase === "spring") {
+        document.getElementById('images').src = "./assets/images/cherryblossom.jpeg";
+    } else if (phrase === "new york city" || phrase === "city of dreams") {
+        document.getElementById('images').src = "./assets/images/newyorkcity.jpeg";
+    } else if (phrase === "shanghai" || phrase === "oriental paris") {
+        document.getElementById('images').src = "./assets/images/shanghai.jpeg";
+    } else if (phrase === "chicago" || phrase === "windy city") {
+        document.getElementById('images').src = "./assets/images/chicago.jpeg";
+    } else if (phrase === "tower" || phrase === "giraffes") {
+        document.getElementById('images').src = "./assets/images/tower.jpeg";
+    } else if (phrase === "hippopotamus" || phrase === "bloat") {
+        document.getElementById('images').src = "./assets/images/hippopotamus.jpeg";
+    } else if (phrase === "tulip" || phrase === "latte art") {
+        document.getElementById('images').src = "./assets/images/tulip.jpeg";
     }
 }
 
@@ -143,26 +118,25 @@ function guesses() {
     
     if (numberOfBlanks == 0) {
         
-        swal("You Won!!", "Congratulations!", "success",{
-            timer: 3000,
+        swal("Correct!!", "Congratulations!", "success",{
+            timer: 1500,
         });
         wins++;
         document.getElementById('wins').innerHTML = wins;
+        setTimeout(gameStart, 1500)
         
-        gameStart();
 
     } else if(guessAmount === 0) {
 
         swal("You Lost!!", "Try again", "error",{
-            timer: 3000,
+            timer: 1500,
         });
         losses++;
         document.getElementById('losses').innerHTML = losses;
         
-        gameStart();
+        setTimeout(gameStart, 1500)
         
     }
-    
 }
 
 gameStart();
